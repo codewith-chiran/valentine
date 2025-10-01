@@ -1,0 +1,736 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-pink: #ff6b6b;
+    --secondary-pink: #ff8e8e;
+    --light-pink: #ffafcc;
+    --dark-pink: #ff4757;
+    --blue: #74b9ff;
+    --dark-blue: #0984e3;
+    --yellow: #ffd166;
+    --white: #ffffff;
+    --text-dark: #333333;
+    --text-light: #666666;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --border-radius: 20px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffafcc, #ffc8dd, #bde0fe);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden; /* Prevent body scroll */
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 360px;
+    height: 640px; /* 9:16 aspect ratio */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 10; /* Ensure it's above floating elements */
+}
+
+/* Header Styles */
+.brand-header {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--white);
+    flex-shrink: 0;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    box-shadow: var(--shadow);
+}
+
+.brand-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Content */
+.main-content {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.valentine-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: var(--primary-pink);
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+}
+
+.heart-emoji {
+    font-size: 1.5rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Envelope Styles */
+.envelope-container {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.envelope {
+    position: relative;
+    width: 160px;
+    height: 112px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+.envelope-front, .envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.envelope-front {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease;
+}
+
+.envelope.open .envelope-front {
+    transform: translateY(-64px) rotateX(180deg);
+}
+
+.heart-shape {
+    width: 32px;
+    height: 32px;
+    background: var(--dark-pink);
+    transform: rotate(45deg);
+    position: relative;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.heart-shape::before,
+.heart-shape::after {
+    content: '';
+    width: 32px;
+    height: 32px;
+    background: var(--dark-pink);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart-shape::before {
+    top: -16px;
+    left: 0;
+}
+
+.heart-shape::after {
+    top: 0;
+    left: -16px;
+}
+
+.click-text {
+    margin-top: 10px;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 12px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 96px;
+    background: var(--white);
+    border-radius: 6px;
+    padding: 12px;
+    z-index: 2;
+    transform: translateY(64px);
+    transition: transform 0.6s ease 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.envelope.open .letter {
+    transform: translateY(-32px);
+}
+
+.letter-content h2 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-pink);
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+.letter-content p {
+    margin-bottom: 3px;
+    color: var(--text-light);
+    font-size: 8px;
+    line-height: 1.2;
+}
+
+.signature {
+    margin-top: 4px;
+    font-style: italic;
+    color: var(--primary-pink);
+    font-size: 7px;
+}
+
+/* Message Display */
+.message-container {
+    margin: 8px 0;
+}
+
+.message-display {
+    background: linear-gradient(135deg, var(--yellow), #ffb347);
+    padding: 12px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
+    color: var(--dark-pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.cursor {
+    animation: blinkCursor 0.7s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Cat Styles */
+.cat-container {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+}
+
+.valentine-cat {
+    perspective: 1000px;
+}
+
+.cat {
+    position: relative;
+    width: 112px;
+    height: 112px;
+    animation: bounce 3s ease-in-out infinite;
+}
+
+.heart-nose {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    z-index: 20;
+    animation: heartBeat 2s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.2); }
+}
+
+.ear {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 22px solid var(--light-pink);
+    z-index: 5;
+}
+
+.ear.left {
+    top: 6px;
+    left: 28px;
+    transform: rotate(-20deg);
+    animation: earWiggle 4s infinite;
+}
+
+.ear.right {
+    top: 6px;
+    right: 28px;
+    transform: rotate(20deg);
+    animation: earWiggle 4s infinite 0.5s;
+}
+
+@keyframes earWiggle {
+    0%, 90%, 100% { transform: rotate(-20deg); }
+    95% { transform: rotate(-10deg); }
+}
+
+.ear.right {
+    animation-name: earWiggleRight;
+}
+
+@keyframes earWiggleRight {
+    0%, 90%, 100% { transform: rotate(20deg); }
+    95% { transform: rotate(10deg); }
+}
+
+.face {
+    position: absolute;
+    width: 80px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--light-pink), #ff85a1);
+    border-radius: 50%;
+    top: 22px;
+    left: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.eye {
+    position: absolute;
+    width: 16px;
+    height: 22px;
+    background: #2a2a2a;
+    border-radius: 50%;
+    top: 22px;
+    animation: blink 4s infinite;
+}
+
+.eye.left {
+    left: 19px;
+}
+
+.eye.right {
+    right: 19px;
+}
+
+@keyframes blink {
+    0%, 40%, 44%, 48%, 52%, 100% { height: 22px; }
+    42%, 46%, 50% { height: 3px; }
+}
+
+.mouth {
+    position: absolute;
+    width: 16px;
+    height: 10px;
+    background: var(--dark-pink);
+    border-radius: 0 0 10px 10px;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: talk 1.5s infinite alternate;
+}
+
+@keyframes talk {
+    0% { height: 5px; }
+    100% { height: 10px; }
+}
+
+.whiskers {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    bottom: 18px;
+}
+
+.whisker {
+    position: absolute;
+    width: 22px;
+    height: 2px;
+    background: #888;
+}
+
+.whisker.left-1 { top: 0; left: 3px; transform: rotate(-15deg); }
+.whisker.left-2 { top: 5px; left: 3px; transform: rotate(-5deg); }
+.whisker.right-1 { top: 0; right: 3px; transform: rotate(15deg); }
+.whisker.right-2 { top: 5px; right: 3px; transform: rotate(5deg); }
+
+.body {
+    position: absolute;
+    width: 64px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--light-pink), #ff85a1);
+    border-radius: 50% 50% 40% 40%;
+    top: 78px;
+    left: 24px;
+}
+
+.paw {
+    position: absolute;
+    width: 16px;
+    height: 22px;
+    background: var(--light-pink);
+    border-radius: 50% 50% 40% 40%;
+    bottom: -11px;
+}
+
+.paw.left {
+    left: 14px;
+    animation: pawMove 3s infinite alternate;
+}
+
+.paw.right {
+    right: 14px;
+    animation: pawMove 3s infinite alternate 0.5s;
+}
+
+@keyframes pawMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
+}
+
+.tail {
+    position: absolute;
+    width: 44px;
+    height: 11px;
+    background: #ff85a1;
+    border-radius: 11px;
+    top: 86px;
+    right: -22px;
+    transform: rotate(30deg);
+    animation: tailWag 4s infinite alternate;
+}
+
+@keyframes tailWag {
+    0% { transform: rotate(25deg); }
+    100% { transform: rotate(35deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Interactive Buttons */
+.interactive-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.interactive-btn {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: var(--shadow);
+    min-height: 36px;
+}
+
+.love-btn {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    color: var(--white);
+}
+
+.surprise-btn {
+    background: linear-gradient(135deg, var(--blue), var(--dark-blue));
+    color: var(--white);
+}
+
+.interactive-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.btn-icon {
+    font-size: 14px;
+}
+
+/* Love Meter */
+.love-meter {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 12px;
+    border-radius: var(--border-radius);
+    margin: 8px 0;
+    box-shadow: var(--shadow);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.meter-label {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-pink);
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.meter-bar {
+    width: 100%;
+    height: 14px;
+    background: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-pink), var(--secondary-pink));
+    border-radius: 8px;
+    width: 0%;
+    transition: width 2s ease-in-out;
+}
+
+.meter-text {
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Footer */
+.brand-footer {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    padding: 12px;
+    text-align: center;
+    border-top: 3px solid var(--white);
+    flex-shrink: 0;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.footer-logo-img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+}
+
+.footer-text p {
+    color: var(--white);
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.footer-subtext {
+    font-size: 9px !important;
+    opacity: 0.9;
+}
+
+/* Floating Elements Outside Box */
+.floating-heart {
+    position: fixed;
+    font-size: 20px;
+    z-index: 1;
+    pointer-events: none;
+    animation: floatAround 8s infinite linear;
+}
+
+.floating-gift {
+    position: fixed;
+    font-size: 24px;
+    z-index: 1;
+    pointer-events: none;
+    animation: floatAround 12s infinite linear;
+}
+
+@keyframes floatAround {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translate(20px, -30px) rotate(90deg) scale(1.1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(0, -60px) rotate(180deg) scale(1);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translate(-20px, -30px) rotate(270deg) scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg) scale(1);
+        opacity: 0.7;
+    }
+}
+
+/* Special floating animation for gifts */
+@keyframes giftFloat {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translateY(-15px) rotate(10deg) scale(1.1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-30px) rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-15px) rotate(-10deg) scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Hearts Animation */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-pink);
+    transform: rotate(45deg);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 100;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-pink);
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -10px;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(45deg) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(45deg) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Scrollbar for main content */
+.main-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: var(--light-pink);
+    border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    .mobile-container {
+        max-width: 100%;
+        height: calc(100vh - 10px);
+        border-radius: 15px;
+    }
+
+    .main-content {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .valentine-title {
+        font-size: 1.4rem;
+    }
+
+    .interactive-section {
+        grid-template-columns: 1fr;
+    }
+}
