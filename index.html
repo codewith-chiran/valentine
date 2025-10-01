@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day 💝 - CodeWithChiran</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="mobile-container">
+    <!-- Header with Logo -->
+    <header class="brand-header">
+        <div class="logo-container">
+            <img src="https://github.com/codewith-chiran/valentine/blob/main/codewithchiran-logo.png?raw=true" alt="CodeWithChiran" class="logo">
+            <span class="brand-name">CodeWithChiran</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Valentine Title -->
+        <div class="title-section">
+            <h1 class="valentine-title">Happy Valentine's Day</h1>
+            <div class="heart-emoji">💝</div>
+        </div>
+
+        <!-- Animated Envelope -->
+        <div class="envelope-container">
+            <div class="envelope" onclick="openEnvelope()">
+                <div class="envelope-front">
+                    <div class="heart-shape"></div>
+                    <div class="click-text">Tap to Open 💌</div>
+                </div>
+                <div class="envelope-back"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <h2>To My Special Someone 💕</h2>
+                        <p>You light up my world like nobody else. On this Valentine's Day, I want to remind you how much you mean to me.</p>
+                        <p>Every moment with you is precious, and I cherish you more than words can express.</p>
+                        <div class="signature">
+                            <p>With all my love,</p>
+                            <p>Your Valentine 💖</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cute Cat -->
+        <div class="cat-container">
+            <div class="valentine-cat">
+                <div class="cat">
+                    <div class="heart-nose">💖</div>
+                    <div class="ear left"></div>
+                    <div class="ear right"></div>
+                    <div class="face">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                        <div class="mouth"></div>
+                        <div class="whiskers">
+                            <div class="whisker left-1"></div>
+                            <div class="whisker left-2"></div>
+                            <div class="whisker right-1"></div>
+                            <div class="whisker right-2"></div>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="paw left"></div>
+                        <div class="paw right"></div>
+                        <div class="tail"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Display -->
+        <div class="message-container">
+            <div class="message-display">
+                <div class="message" id="valentineMessage">
+                    <span class="typed-text"></span>
+                    <span class="cursor">|</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Buttons -->
+        <div class="interactive-section">
+            <button class="interactive-btn love-btn" onclick="sendLove()">
+                <span class="btn-icon">💖</span>
+                Send Love
+            </button>
+            <button class="interactive-btn surprise-btn" onclick="createSurprise()">
+                <span class="btn-icon">🎁</span>
+                Surprise Me
+            </button>
+        </div>
+
+        <!-- Love Meter -->
+        <div class="love-meter">
+            <div class="meter-label">Our Love Meter</div>
+            <div class="meter-bar">
+                <div class="meter-fill" id="loveMeter"></div>
+            </div>
+            <div class="meter-text" id="loveText">Loading love... 💕</div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="brand-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://github.com/codewith-chiran/valentine/blob/main/codewithchiran-logo.png?raw=true" alt="CodeWithChiran" class="footer-logo-img">
+            </div>
+            <div class="footer-text">
+                <p>Made with 💝 by CodeWithChiran</p>
+                <p class="footer-subtext">Spread love everywhere you go ❤️</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Hearts Container -->
+<div id="heartsContainer"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
